@@ -1,5 +1,8 @@
 # Pacotes
 node_modules
 
+# Pasta de build da aplicação
+dist
+
 # Variáveis de ambiente
 .env
