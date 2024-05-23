@@ -8,19 +8,25 @@
 npm i
 ```
 
-2. Modo de desenvolvimento
+2. Configurar variáveis de ambiente
+
+* Copiar o arquivo `.env.example`
+* Renomear a cópia para `.env`
+* Trocar os valores da(s) variável(eis) se necessário
+
+3. Rodar em modo de desenvolvimento
 
 ```ts
 npm run dev
 ```
 
-3. Buildar a aplicação
+4. Buildar a aplicação
 
 ```ts
 npm run build
 ```
 
-4. Rodar a aplicação buildada
+5. Rodar a aplicação buildada
 
 ```ts
 npm start
