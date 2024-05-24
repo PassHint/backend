@@ -58,10 +58,7 @@ export const AuthService = {
   },
   validateToken(userToken: string, user: User): boolean {
     try {
-      const result = jwt.verify(userToken, jwtSecret);
-
-      console.log(result);
-
+      jwt.verify(userToken, jwtSecret);
       return true;
     } catch(e) {
       console.error(e);

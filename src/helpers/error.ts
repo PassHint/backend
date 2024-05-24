@@ -31,8 +31,36 @@ const ErrorHelper = {
       }
     },
     unauthorized: {
-      code: 3001,
+      code: 2100,
       message: "You are not logged in."
+    }
+  },
+  hint: {
+    create: {
+      missingParams: {
+        code: 3000,
+        message: "Source and content are required."
+      },
+      unexpected: {
+        code: 3001,
+        message: "It was not possible to craete your hint. An unexpected error happened."
+      },
+      alreadyExists: {
+        code: 3002,
+        message: "You already have a saved hint to this source."
+      }
+    },
+    list: {
+      unexpected: {
+        code: 3100,
+        message: "It was not possible to list your hints. An unexpected error happened."
+      },
+    },
+    find: {
+      notFound: {
+        code: 3200,
+        message: "Hint with the provided id was not found."
+      }
     }
   }
 }

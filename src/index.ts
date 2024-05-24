@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import UserController from "./modules/user/controller";
 import { AuthController } from "./auth/controller";
 import authMiddleware, { RequestWithUser } from "./middlewares/auth";
+import { HintController } from "./hint/controller";
 
 dotenv.config();
 
@@ -12,21 +13,30 @@ const port = process.env.APP_PORT || 3000;
 
 app.use(express.json());
 
+// --- Public routes
+
 app.get('/', (req: Request, res: Response) => {
   res.json({ success: true });
 });
 
-// USERS
-app.post('/user', UserController.POST);
+// - Users
+app.post('/users', UserController.POST);
 
-// AUTH
 app.post('/login', AuthController.LOGIN);
 
-// Rotas autenticadas
+// --- Authenticated routes
+
 app.get('/profile', authMiddleware, (req: RequestWithUser, res: Response) => {
   const { id, username } = req.body.user;
   res.send({ id, username });
-})
+});
+
+// - Hints
+app.post('/hints', authMiddleware, HintController.CREATE);
+app.get('/hints', authMiddleware, HintController.LIST);
+app.get('/hints/:id', authMiddleware, HintController.FIND);
+app.put('/hints/:id', authMiddleware, HintController.UPDATE);
+app.delete('/hints/:id', authMiddleware, HintController.DELETE);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

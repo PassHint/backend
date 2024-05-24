@@ -7,7 +7,7 @@ import { User } from "../modules/user/types";
 
 const errorPayload = { success: false, error: ErrorHelper.auth.unauthorized, data: null }
 
-export type RequestWithUser = Request<never, never, { user: User }, never>
+export type RequestWithUser = Request<never, never, { user: User }  & { [key: string]: any }, never>
 
 export default async function authMiddleware(req: RequestWithUser, res: Response, next: NextFunction) {
   const token = req.headers['authorization'];
