@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import ErrorHelper from "../helpers/error";
 import jwt from "jsonwebtoken";
-import { UserService } from "../modules/user/service";
+import { UserService } from "../user/service";
 import { AuthService } from "../auth/service";
-import { User } from "../modules/user/types";
+import { User } from "../user/types";
 
 const errorPayload = { success: false, error: ErrorHelper.auth.unauthorized, data: null }
 

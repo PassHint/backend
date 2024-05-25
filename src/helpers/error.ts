@@ -12,6 +12,10 @@ const ErrorHelper = {
       weakPassword: {
         code: 1001,
         message: "The password is weak. The password must contain at least 8 characters, one uppercase letter, one lowercase letter, one digit and one special character."
+      },
+      alreadyExists: {
+        code: 1002,
+        message: "You are already registered."
       }
     }
   },
@@ -59,9 +63,33 @@ const ErrorHelper = {
     find: {
       notFound: {
         code: 3200,
-        message: "Hint with the provided id was not found."
+        message: "Unable to find the hint. No hints with the provided id were found."
       }
-    }
+    },
+    update: {
+      missingParams: {
+        code: 3300,
+        message: "Source or content are required."
+      },
+      unexpected: {
+        code: 3301,
+        message: "It was not possible to update your hint. An unexpected error happened."
+      },
+      notFound: {
+        code: 3302,
+        message: "Unable to update the hint. No hints with the provided id were found."
+      }
+    },
+    delete: {
+      unexpected: {
+        code: 3400,
+        message: "It was not possible to delete your hint. An unexpected error happened."
+      },
+      notFound: {
+        code: 3401,
+        message: "Unable to delete the hint. No hints with the provided id were found."
+      }
+    },
   }
 }
 

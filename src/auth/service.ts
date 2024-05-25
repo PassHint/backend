@@ -3,9 +3,9 @@ import generateErrorResponse from "../helpers/generateErrorResponse";
 import supabase from "../modules/database";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
-import { User } from "../modules/user/types";
+import { User } from "../user/types";
 import generateSuccessResponse from "../helpers/generateSuccessResponse";
-import { UserService } from "../modules/user/service";
+import { UserService } from "../user/service";
 import dotenv from 'dotenv';
 
 dotenv.config();

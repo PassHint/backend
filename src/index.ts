@@ -1,7 +1,7 @@
 // src/index.js
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import UserController from "./modules/user/controller";
+import UserController from "./user/controller";
 import { AuthController } from "./auth/controller";
 import authMiddleware, { RequestWithUser } from "./middlewares/auth";
 import { HintController } from "./hint/controller";

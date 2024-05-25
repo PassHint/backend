@@ -1,8 +1,9 @@
-import { AuthService } from "../../auth/service";
-import ErrorHelper from "../../helpers/error";
-import generateErrorResponse from "../../helpers/generateErrorResponse";
-import RegExpHelper from "../../helpers/regexp";
-import supabase from "../database";
+import { AuthService } from "../auth/service";
+import ErrorHelper from "../helpers/error";
+import generateErrorResponse from "../helpers/generateErrorResponse";
+import generateSuccessResponse from "../helpers/generateSuccessResponse";
+import RegExpHelper from "../helpers/regexp";
+import supabase from "../modules/database";
 import { User } from "./types";
 
 interface CreateUserDTO {
@@ -20,17 +21,17 @@ export const UserService = {
 
     const passwordHash = AuthService.generatePasswordHash(password);
 
-    try {
-      const supabaseResponse = await supabase.from('users').insert({ username, password_hash: passwordHash });
+    const supabaseResponse = await supabase.from('users').insert({ username, password_hash: passwordHash });
 
-      const isSuccess = supabaseResponse.status === 201;
-      if(!isSuccess) throw supabaseResponse.error;
+    if(supabaseResponse.status === 409) {
+      return generateErrorResponse(ErrorHelper.user.create.alreadyExists, 400);
+    }
 
-      return { success: isSuccess, status: 201, error: null };
-    } catch(e) {
-      console.error(e);
+    if(supabaseResponse.error) {
       return generateErrorResponse(ErrorHelper.unexpected, 500);
-    }    
+    }
+
+    return generateSuccessResponse(null, 201);
   },
   async getUserByUsername(username: string): Promise<User | null> {
     const { data } = await supabase.from('users').select('*').eq('username', username);
