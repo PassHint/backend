@@ -19,7 +19,7 @@ export default async function authMiddleware(req: RequestWithUser, res: Response
   const cleanToken = token.replace('Bearer ', '');
   const decoded = jwt.decode(cleanToken) as { id: string, username: string };
 
-  if(!decoded.id || !decoded.username) {
+  if(!decoded?.id || !decoded?.username) {
     return res.status(401).send(errorPayload);
   }
 
